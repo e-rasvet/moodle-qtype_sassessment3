@@ -215,9 +215,8 @@ class qtype_sassessment_renderer extends qtype_renderer {
             $result .= html_writer::empty_tag('audio', array('id' => $audioname, 'name' => $audioname, 'controls' => ''));
             $result .= html_writer::end_tag('div');
 
-            $result .= html_writer::script(null, new moodle_url('/question/type/sassessment/js/recorder.js'));
-            $result .= html_writer::script(null, new moodle_url('/question/type/sassessment/js/main.js?8'));
-            $result .= html_writer::script(null, new moodle_url('/question/type/sassessment/js/Mp3LameEncoder.min.js'));
+            $result .= html_writer::script(null, new moodle_url('/question/type/sassessment/js/lame.js'));
+            $result .= html_writer::script(null, new moodle_url('/question/type/sassessment/js/main.js'));
         }
         else {
             $files = $qa->get_last_qt_files('attachments', $options->context->id);

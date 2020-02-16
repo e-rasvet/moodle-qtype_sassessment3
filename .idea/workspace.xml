@@ -2,16 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9c0ebe09-95fe-493a-b09e-aeb33328e72e" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/deployment.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/deployment.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/webServers.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/webServers.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db/install.xml" beforeDir="false" afterPath="$PROJECT_DIR$/db/install.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/Mp3LameEncoder.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/Mp3LameEncoder.min.js.mem" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/main.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/recorder.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib.php" beforeDir="false" afterPath="$PROJECT_DIR$/lib.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/questiontype.php" beforeDir="false" afterPath="$PROJECT_DIR$/questiontype.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/renderer.php" beforeDir="false" afterPath="$PROJECT_DIR$/renderer.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -43,7 +34,7 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/js" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -145,6 +136,7 @@
       <workItem from="1581701664733" duration="251000" />
       <workItem from="1581703216755" duration="194000" />
       <workItem from="1581765631226" duration="1051000" />
+      <workItem from="1581851526361" duration="79000" />
     </task>
     <servers />
   </component>
@@ -174,10 +166,18 @@
       <screen x="0" y="23" width="1440" height="797" />
     </state>
     <state x="184" y="83" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.23.1440.797@0.23.1440.797" timestamp="1581850873626" />
-    <state x="100" y="123" width="1240" height="597" key="com.intellij.dvcs.ui.CompareBranchesDialog" timestamp="1581850876680">
+    <state width="563" height="442" key="Diff.GoToChangePopup" timestamp="1581851690086">
       <screen x="0" y="23" width="1440" height="797" />
     </state>
-    <state x="100" y="123" width="1240" height="597" key="com.intellij.dvcs.ui.CompareBranchesDialog/0.23.1440.797@0.23.1440.797" timestamp="1581850876680" />
+    <state width="563" height="442" key="Diff.GoToChangePopup/0.23.1440.797@0.23.1440.797" timestamp="1581851690086" />
+    <state x="19" y="67" width="1240" height="597" key="DiffContextDialog" timestamp="1581851747452">
+      <screen x="0" y="23" width="1440" height="797" />
+    </state>
+    <state x="19" y="67" width="1240" height="597" key="DiffContextDialog/0.23.1440.797@0.23.1440.797" timestamp="1581851747452" />
+    <state x="100" y="123" width="1240" height="597" key="com.intellij.dvcs.ui.CompareBranchesDialog" timestamp="1581851653794">
+      <screen x="0" y="23" width="1440" height="797" />
+    </state>
+    <state x="100" y="123" width="1240" height="597" key="com.intellij.dvcs.ui.CompareBranchesDialog/0.23.1440.797@0.23.1440.797" timestamp="1581851653794" />
     <state x="413" y="255" key="com.intellij.ide.util.TipDialog" timestamp="1581701669148">
       <screen x="0" y="23" width="1440" height="804" />
     </state>
