@@ -52,7 +52,10 @@ $string['recordAudioIniosapp'] = 'Record Audio for iOS in app';
 $string['targetresponsee'] = 'Target response';
 $string['yourresponse'] = 'Your response';
 $string['scoree'] = 'Score';
-$string['speechtotextlang'] = 'Language';
+$string['amazon_language'] = 'Language';
+$string['amazon_secretkey'] = 'Secret Key';
+$string['amazon_accessid'] = 'Access ID';
+$string['amazon_region'] = 'Region';
 
 $string['wordcount'] = 'Total word count';
 $string['worduniquecount'] = 'Total unique words';

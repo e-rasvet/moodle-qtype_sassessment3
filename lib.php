@@ -59,7 +59,7 @@ function qtype_sassessment_compare_answer($ans, $qid, $question, $get = true) {
       foreach ($sampleresponses as $k => $sampleresponse) {
           $allSampleResponses .= $sampleresponse->answer;
 
-          $percent = qtype_sassessment_similar_text($sampleresponse->answer, $ans, $question->options->speechtotextlang);
+          $percent = qtype_sassessment_similar_text($sampleresponse->answer, $ans, $question->options->amazon_language);
 
           if ($maxp < $percent) {
               $maxi = $k;
@@ -113,7 +113,7 @@ function qtype_sassessment_similar_text($text1, $text2, $lang = "en"){
     $text2 = strtolower($text2);
 
 
-    if ($lang == "en") {
+    if (strstr($lang, "en")) {
         $res = qtype_sassessment_cmp_phon($text1, $text2);
         $percent = $res['percent'];
     } else {

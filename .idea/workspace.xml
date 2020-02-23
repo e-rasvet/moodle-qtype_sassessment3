@@ -1,9 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="9c0ebe09-95fe-493a-b09e-aeb33328e72e" name="Default" comment="">
+    <list default="true" id="9c0ebe09-95fe-493a-b09e-aeb33328e72e" name="Default" comment="Amazon Transcribe integration">
+      <change afterPath="$PROJECT_DIR$/settings.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db/install.xml" beforeDir="false" afterPath="$PROJECT_DIR$/db/install.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db/upgrade.php" beforeDir="false" afterPath="$PROJECT_DIR$/db/upgrade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/edit_sassessment_form.php" beforeDir="false" afterPath="$PROJECT_DIR$/edit_sassessment_form.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/main.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lang/.idea/lang.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lang/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lang/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lang/.idea/workspace.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lang/en/qtype_sassessment.php" beforeDir="false" afterPath="$PROJECT_DIR$/lang/en/qtype_sassessment.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib.php" beforeDir="false" afterPath="$PROJECT_DIR$/lib.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/questiontype.php" beforeDir="false" afterPath="$PROJECT_DIR$/questiontype.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/renderer.php" beforeDir="false" afterPath="$PROJECT_DIR$/renderer.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/version.php" beforeDir="false" afterPath="$PROJECT_DIR$/version.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -23,6 +36,11 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="PREVIOUS_COMMIT_AUTHORS">
+      <list>
+        <option value="Igor Nikulin &lt;dyhanie.istiny@gmail.com&gt;" />
+      </list>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectId" id="1QbgPxgkAcEgIBAC70uK9DUnBcl" />
@@ -136,8 +154,20 @@
       <workItem from="1581701664733" duration="251000" />
       <workItem from="1581703216755" duration="194000" />
       <workItem from="1581765631226" duration="1051000" />
-      <workItem from="1581851526361" duration="79000" />
+      <workItem from="1581851526361" duration="2860000" />
+      <workItem from="1581920433002" duration="9851000" />
+      <workItem from="1582006793846" duration="8518000" />
+      <workItem from="1582089184540" duration="337000" />
+      <workItem from="1582441397220" duration="36000" />
     </task>
+    <task id="LOCAL-00001" summary="Amazon Transcribe integration">
+      <created>1581851831407</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1581851831407</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -156,40 +186,52 @@
       </map>
     </option>
   </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Amazon Transcribe integration" />
+    <option name="LAST_COMMIT_MESSAGE" value="Amazon Transcribe integration" />
+  </component>
   <component name="WindowStateProjectService">
     <state x="320" y="87" key="#Deployment" timestamp="1581703163347">
       <screen x="0" y="23" width="1440" height="798" />
     </state>
     <state x="320" y="87" key="#Deployment/0.23.1440.797@0.23.1440.797" timestamp="1581695066899" />
     <state x="320" y="87" key="#Deployment/0.23.1440.798@0.23.1440.798" timestamp="1581703163347" />
-    <state x="184" y="83" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1581850873626">
+    <state x="184" y="83" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1581851923041">
       <screen x="0" y="23" width="1440" height="797" />
     </state>
-    <state x="184" y="83" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.23.1440.797@0.23.1440.797" timestamp="1581850873626" />
+    <state x="184" y="83" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.23.1440.797@0.23.1440.797" timestamp="1581851923041" />
+    <state x="245" y="24" key="CommitChangelistDialog2" timestamp="1581851830772">
+      <screen x="0" y="23" width="1440" height="797" />
+    </state>
+    <state x="245" y="24" key="CommitChangelistDialog2/0.23.1440.797@0.23.1440.797" timestamp="1581851830772" />
     <state width="563" height="442" key="Diff.GoToChangePopup" timestamp="1581851690086">
       <screen x="0" y="23" width="1440" height="797" />
     </state>
     <state width="563" height="442" key="Diff.GoToChangePopup/0.23.1440.797@0.23.1440.797" timestamp="1581851690086" />
-    <state x="19" y="67" width="1240" height="597" key="DiffContextDialog" timestamp="1581851747452">
+    <state x="19" y="67" width="1240" height="597" key="DiffContextDialog" timestamp="1581851986647">
       <screen x="0" y="23" width="1440" height="797" />
     </state>
-    <state x="19" y="67" width="1240" height="597" key="DiffContextDialog/0.23.1440.797@0.23.1440.797" timestamp="1581851747452" />
-    <state x="100" y="123" width="1240" height="597" key="com.intellij.dvcs.ui.CompareBranchesDialog" timestamp="1581851653794">
+    <state x="19" y="67" width="1240" height="597" key="DiffContextDialog/0.23.1440.797@0.23.1440.797" timestamp="1581851986647" />
+    <state x="541" y="352" key="NewPhpFileDialog" timestamp="1581929078557">
       <screen x="0" y="23" width="1440" height="797" />
     </state>
-    <state x="100" y="123" width="1240" height="597" key="com.intellij.dvcs.ui.CompareBranchesDialog/0.23.1440.797@0.23.1440.797" timestamp="1581851653794" />
+    <state x="541" y="352" key="NewPhpFileDialog/0.23.1440.797@0.23.1440.797" timestamp="1581929078557" />
+    <state x="100" y="123" width="1240" height="597" key="com.intellij.dvcs.ui.CompareBranchesDialog" timestamp="1581851986648">
+      <screen x="0" y="23" width="1440" height="797" />
+    </state>
+    <state x="100" y="123" width="1240" height="597" key="com.intellij.dvcs.ui.CompareBranchesDialog/0.23.1440.797@0.23.1440.797" timestamp="1581851986648" />
     <state x="413" y="255" key="com.intellij.ide.util.TipDialog" timestamp="1581701669148">
       <screen x="0" y="23" width="1440" height="804" />
     </state>
     <state x="413" y="254" key="com.intellij.ide.util.TipDialog/0.23.1440.797@0.23.1440.797" timestamp="1581695040705" />
     <state x="413" y="255" key="com.intellij.ide.util.TipDialog/0.23.1440.804@0.23.1440.804" timestamp="1581701669148" />
-    <state x="509" y="345" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1581850853422">
+    <state x="509" y="345" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1581851929777">
       <screen x="0" y="23" width="1440" height="797" />
     </state>
-    <state x="509" y="345" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.23.1440.797@0.23.1440.797" timestamp="1581850853422" />
-    <state x="386" y="57" width="667" height="729" key="find.popup" timestamp="1581785810739">
+    <state x="509" y="345" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.23.1440.797@0.23.1440.797" timestamp="1581851929777" />
+    <state x="386" y="57" width="667" height="729" key="find.popup" timestamp="1581931048228">
       <screen x="0" y="23" width="1440" height="797" />
     </state>
-    <state x="386" y="57" width="667" height="729" key="find.popup/0.23.1440.797@0.23.1440.797" timestamp="1581785810739" />
+    <state x="386" y="57" width="667" height="729" key="find.popup/0.23.1440.797@0.23.1440.797" timestamp="1581931048228" />
   </component>
 </project>

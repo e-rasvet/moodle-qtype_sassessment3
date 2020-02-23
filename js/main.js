@@ -1,3 +1,5 @@
+window.typeRoot = M.cfg.wwwroot + "/question/type/sassessment";
+
 (function(){function r(e,n,t){function o(i,f){if(!n[i]){if(!e[i]){var c="function"==typeof require&&require;if(!f&&c)return c(i,!0);if(u)return u(i,!0);var a=new Error("Cannot find module '"+i+"'");throw a.code="MODULE_NOT_FOUND",a}var p=n[i]={exports:{}};e[i][0].call(p.exports,function(r){var n=e[i][1][r];return o(n||r)},p,p.exports,r,e,n,t)}return n[i].exports}for(var u="function"==typeof require&&require,i=0;i<t.length;i++)o(t[i]);return o}return r})()({1:[function(require,module,exports){
 "use strict";
 
@@ -194,6 +196,8 @@ var socket;
 var micStream;
 var socketError = false;
 var transcribeException = false; // check to see if the browser allows mic access
+var recStatus = [];
+var activeRecID = 0;
 
 if (!window.navigator.mediaDevices.getUserMedia) {
   // Use our helper method to show an error on the page
@@ -201,6 +205,188 @@ if (!window.navigator.mediaDevices.getUserMedia) {
 
   toggleStartStop();
 }
+
+
+    function uploadFile(file, repo_id, itemid, title, ctx_id, btn) {
+        var xhr = new XMLHttpRequest();
+        var formdata = new FormData();
+        formdata.append('repo_upload_file', file);
+        formdata.append('sesskey', M.cfg.sesskey);
+        formdata.append('repo_id', repo_id);
+        formdata.append('itemid', itemid);
+        formdata.append('title', title);
+        formdata.append('overwrite', 1);
+        formdata.append('ctx_id', ctx_id);
+        var uploadUrl = M.cfg.wwwroot + "/repository/repository_ajax.php?action=upload";
+        xhr.open("POST", uploadUrl, !0);
+        xhr.btn = btn;
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState == 4) {
+                var audioname = this.btn.getAttribute('audioname');
+                document.getElementById(audioname).src = JSON.parse(xhr.responseText).url + '?' + Date.now();
+                //document.getElementById(recStatus[activeRecID].audioname).src + '?' + Date.now();
+                this.btn.innerText = 'Start recording';
+            }
+        }
+        xhr.send(formdata);
+    }
+
+
+
+    $('.srecordingBTN').click(function (ev) {
+
+        var btn = ev.target;
+        var id = btn.name;
+        var final_transcript = '';
+        activeRecID = id;
+
+        if (recStatus[id] == null) {
+            recStatus[id] = {};
+            //window.recStatus[id].lang = speechLang;
+            recStatus[id].btn = btn;
+            recStatus[id].qid = btn.getAttribute('qid');
+            recStatus[id].ans = document.getElementById(btn.getAttribute('answername'));
+            recStatus[id].ansDiv = document.getElementById(btn.getAttribute('answerDiv'));
+            recStatus[id].grade = document.getElementById(btn.getAttribute('gradename'));
+            recStatus[id].amazon_language = btn.getAttribute('amazon_language');
+            recStatus[id].amazon_region = btn.getAttribute('amazon_region');
+            recStatus[id].amazon_accessid = btn.getAttribute('amazon_accessid');
+            recStatus[id].amazon_secretkey = btn.getAttribute('amazon_secretkey');
+            recStatus[id].audioname = btn.getAttribute('audioname');
+            recStatus[id].options = btn.getAttribute('options');
+            recStatus[id].status = 0;
+        }
+
+        if (recStatus[id].status == 0) {
+
+            btn.innerText = "Stop recording. Recording...";
+            btn.style.color = "red";
+
+            /*
+            Init mp3 encoding
+             */
+            let channels = 1 // 1 for mono or 2 for stereo
+            let kbps = 128 // encode 128kbps mp3
+            window.mp3encoder = null
+            window.mp3Data = [] // array of Uint8Array
+
+            var AudioContext = window.AudioContext || window.webkitAudioContext;
+            var audioCtx = new AudioContext();
+
+            window.sampleRate = audioCtx.sampleRate;
+
+            window.mp3encoder = new lamejs.Mp3Encoder(channels, window.sampleRate, kbps);
+
+            $('#error').hide(); // hide any existing errors
+
+            toggleStartStop(true); // disable start and enable stop button
+            // set the language and region from the dropdowns
+
+            setLanguage();
+            setRegion(); // first we get the microphone input from the browser (as a promise)...
+
+            window.navigator.mediaDevices.getUserMedia({
+                video: false,
+                audio: true
+            }) // ...then we convert the mic stream to binary event stream messages when the promise resolves
+                .then(streamAudioToWebSocket)["catch"](function (error) {
+                showError('There was an error streaming your audio to Amazon Transcribe. Please try again.');
+                toggleStartStop();
+            });
+
+            recStatus[id].status = 1;
+
+            recStatus[id].ans.value = '';
+            recStatus[id].grade.value = '';
+            $(recStatus[activeRecID].ansDiv).text("");
+            transcription = "";
+
+/*
+            var recordingBtnText = setInterval(function () {
+                if (recStatus[id] == null) {
+                    clearInterval(recordingBtnText);
+                }
+
+                console.log("Interval Called");
+                var text = 'Stop recording. Recording';
+                var dotsText = "";
+                var i = 1;
+                var dotsCount = 1;
+
+                for (i = 1; i <= dotsCount; i++) {
+                    dotsText = dotsText + ".";
+                }
+
+                if (recStatus[id].btn.style.color != "red") {
+                    recStatus[id].btn.style.color = "red";
+                } else {
+                    recStatus[id].btn.style.color = "black";
+                }
+
+                recStatus[id].btn.innerText = text + dotsText;
+
+                if (dotsCount > 4) {
+                    dotsCount = 1;
+                } else {
+                    dotsCount++;
+                }
+            }, 500);
+
+ */
+
+        } else {
+            //clearInterval(recordingBtnText);
+
+            btn.innerText = "Uploading...";
+            btn.style.color = "black";
+
+            /*
+            Mp3 encoding
+             */
+
+            var mp3buf = window.mp3encoder.flush()
+            if (mp3buf.length > 0) {
+                window.mp3Data.push(mp3buf)
+            }
+
+            console.log(window.mp3encoder);
+
+            var blob = new Blob(window.mp3Data, {type: 'audio/mp3'});
+            var url = URL.createObjectURL(blob);
+            console.log('MP3 URl: ', url);
+
+            //document.getElementById(recStatus[activeRecID].audioname).src = JSON.parse(xhr.responseText).url + '?' + Date.now();
+            document.getElementById(recStatus[activeRecID].audioname).src = url;
+
+            //postMessage(window.mp3Data)
+            window.mp3Data = []
+
+
+            closeSocket();
+            toggleStartStop();
+
+            recStatus[id].status = 0;
+
+            var opts = JSON.parse(recStatus[activeRecID].options);
+            uploadFile(blob, opts.repo_id, opts.itemid, opts.title, opts.ctx_id, btn);
+
+
+            recStatus[activeRecID].grade.value = 'Updating...';
+            $.post(typeRoot + "/ajax-score.php", {qid: recStatus[activeRecID].qid, ans: recStatus[activeRecID].ans.value},
+                function (data) {
+                    recStatus[activeRecID].grade.value = JSON.parse(data).gradePercent;
+
+                    recStatus[activeRecID] = null;
+                });
+
+
+
+            console.log(transcription);
+        }
+
+    });
+
+
 
 $('#start-button').click(function () {
 
@@ -230,7 +416,7 @@ $('#start-button').click(function () {
   window.navigator.mediaDevices.getUserMedia({
     video: false,
     audio: true
-  }) // ...then we convert the mic stream to binary event stream messages when the promise resolves 
+  }) // ...then we convert the mic stream to binary event stream messages when the promise resolves
   .then(streamAudioToWebSocket)["catch"](function (error) {
     showError('There was an error streaming your audio to Amazon Transcribe. Please try again.');
     toggleStartStop();
@@ -261,12 +447,15 @@ var streamAudioToWebSocket = function streamAudioToWebSocket(userMediaStream) {
 };
 
 function setLanguage() {
-  languageCode = $('#language').find(':selected').val();
+    //console.log(recStatus[activeRecID].amazon_language + "/" + recStatus[activeRecID].amazon_region);
+  languageCode = recStatus[activeRecID].amazon_language;
+  //languageCode = $('#language').find(':selected').val();
   //if (languageCode == "en-US" || languageCode == "es-US") sampleRate = 48000;else sampleRate = 8000;
 }
 
 function setRegion() {
-  region = $('#region').find(':selected').val();
+  region = recStatus[activeRecID].amazon_region;
+  //region = $('#region').find(':selected').val();
 }
 
 function wireSocketEvents() {
@@ -313,13 +502,18 @@ var handleEventStreamMessage = function handleEventStreamMessage(messageJson) {
 
       transcript = decodeURIComponent(escape(transcript)); // update the textarea with the latest result
 
-      $('#transcript').val(transcription + transcript + "\n"); // if this transcript segment is final, add it to the overall transcription
+      //$('#transcript').val(transcription + transcript + "\n"); // if this transcript segment is final, add it to the overall transcription
+
+        $(recStatus[activeRecID].ansDiv).text(transcription + transcript + " ");
+        recStatus[activeRecID].ans.value = transcription + transcript + " ";
 
       if (!results[0].IsPartial) {
         //scroll the textarea down
-        $('#transcript').scrollTop($('#transcript')[0].scrollHeight);
+        //$('#transcript').scrollTop($('#transcript')[0].scrollHeight);
         transcription += transcript + "\n";
       }
+
+
     }
   }
 };
@@ -409,10 +603,11 @@ function getAudioEventMessage(buffer) {
 function createPresignedUrl() {
   var endpoint = "transcribestreaming." + region + ".amazonaws.com:8443"; // get a preauthenticated URL that we can use to establish our WebSocket
 
+    //console.log(recStatus[activeRecID].amazon_accessid + "/" + recStatus[activeRecID].amazon_secretkey);
   return v4.createPresignedURL('GET', endpoint, '/stream-transcription-websocket', 'transcribe', crypto.createHash('sha256').update('', 'utf8').digest('hex'), {
-    'key': $('#access_id').val(),
-    'secret': $('#secret_key').val(),
-    'sessionToken': $('#session_token').val(),
+    'key': recStatus[activeRecID].amazon_accessid,
+    'secret': recStatus[activeRecID].amazon_secretkey,
+    'sessionToken': '',
     'protocol': 'wss',
     'expires': 15,
     'region': region,
@@ -27906,13 +28101,13 @@ Script.prototype.runInContext = function (context) {
     if (!(context instanceof Context)) {
         throw new TypeError("needs a 'context' argument.");
     }
-    
+
     var iframe = document.createElement('iframe');
     if (!iframe.style) iframe.style = {};
     iframe.style.display = 'none';
-    
+
     document.body.appendChild(iframe);
-    
+
     var win = iframe.contentWindow;
     var wEval = win.eval, wExecScript = win.execScript;
 
@@ -27921,7 +28116,7 @@ Script.prototype.runInContext = function (context) {
         wExecScript.call(win, 'null');
         wEval = win.eval;
     }
-    
+
     forEach(Object_keys(context), function (key) {
         win[key] = context[key];
     });
@@ -27930,11 +28125,11 @@ Script.prototype.runInContext = function (context) {
             win[key] = context[key];
         }
     });
-    
+
     var winKeys = Object_keys(win);
 
     var res = wEval.call(win, this.code);
-    
+
     forEach(Object_keys(win), function (key) {
         // Avoid copying circular objects like `top` and `window` by only
         // updating existing context properties or new properties in the `win`
@@ -27949,9 +28144,9 @@ Script.prototype.runInContext = function (context) {
             defineProp(context, key, win[key]);
         }
     });
-    
+
     document.body.removeChild(iframe);
-    
+
     return res;
 };
 

@@ -177,6 +177,8 @@ class qtype_sassessment_renderer extends qtype_renderer {
             }
         }
 
+        $config = get_config('qtype_sassessment');
+
         $itemid = $qa->prepare_response_files_draft_itemid('attachments', $options->context->id);
         if (!$options->readonly) {
             $gradename = $qa->get_qt_field_name('grade');
@@ -185,12 +187,17 @@ class qtype_sassessment_renderer extends qtype_renderer {
             $btnattributes = array(
                 'name' => $btnname,
                 'id' => $btnname,
+                'class' => 'srecordingBTN',
                 'size' => 80,
                 'qid' => $question->id,
                 'answername' => $answername,
                 'answerDiv' => $answerDiv,
                 'gradename' => $gradename,
-                'onclick' => 'recBtn(event);',
+                'amazon_language' => $question->amazon_language,
+                'amazon_region' => $config->amazon_region,
+                'amazon_accessid' => $config->amazon_accessid,
+                'amazon_secretkey' => $config->amazon_secretkey,
+                //'onclick' => 'recBtn(event);',
                 'type' => 'button',
                 'options' => json_encode(array(
                     'repo_id' => $this->get_repo_id(),
@@ -215,8 +222,9 @@ class qtype_sassessment_renderer extends qtype_renderer {
             $result .= html_writer::empty_tag('audio', array('id' => $audioname, 'name' => $audioname, 'controls' => ''));
             $result .= html_writer::end_tag('div');
 
-            $result .= html_writer::script(null, new moodle_url('/question/type/sassessment/js/lame.js'));
-            $result .= html_writer::script(null, new moodle_url('/question/type/sassessment/js/main.js'));
+            $result .= html_writer::script(null, "https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js");
+            $result .= html_writer::script(null, new moodle_url('/question/type/sassessment/js/lame.js?30'));
+            $result .= html_writer::script(null, new moodle_url('/question/type/sassessment/js/main.js?30'));
         }
         else {
             $files = $qa->get_last_qt_files('attachments', $options->context->id);
@@ -269,10 +277,11 @@ class qtype_sassessment_renderer extends qtype_renderer {
 
 
         $PAGE->requires->js_amd_inline('
+        
 require(["jquery"], function(min) {
     $(function() {
     
-        speechLang = "'.$question->speechtotextlang.'";
+        speechLang = "'.$question->amazon_language.'";
         console.log(\'Spell checking:\' + speechLang);
     
         $(".goToVideo").click(function() {
@@ -334,6 +343,7 @@ require(["jquery"], function(min) {
     });
 });
 ');
+
 
         return $result;
     }

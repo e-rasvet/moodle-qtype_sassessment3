@@ -34,80 +34,20 @@ function xmldb_qtype_sassessment_upgrade($oldversion) {
 
     $dbman = $DB->get_manager();
 
-    // Automatically generated Moodle v3.2.0 release upgrade line.
-    // Put any upgrade step following this.
-
-    // Automatically generated Moodle v3.3.0 release upgrade line.
-    // Put any upgrade step following this.
-
-    // Automatically generated Moodle v3.4.0 release upgrade line.
-    // Put any upgrade step following this.
-
     // Automatically generated Moodle v3.5.0 release upgrade line.
     // Put any upgrade step following this.
 
-    // if ($oldversion < OLDVERSION) {
 
-    //     // Add "filetypeslist" column to the question type options to save the allowed file types.
-    //     $table = new xmldb_table('qtype_sassessment_options');
-    //     $field = new xmldb_field('comment', XMLDB_TYPE_TEXT);
 
-    //     // Conditionally launch add field filetypeslist.
-    //     if (!$dbman->field_exists($table, $field)) {
-    //         $dbman->add_field($table, $field);
-    //     }
-
-    //     // Essay savepoint reached.
-    //     upgrade_plugin_savepoint(true, NEWVERSION, 'qtype', 'sassessment');
-    // }
-
-    if ($oldversion < 2019041800) {
+    if ($oldversion < 2020021200) {
         $table = new xmldb_table('qtype_sassessment_options');
 
-        $field = new xmldb_field('correctfeedback', XMLDB_TYPE_TEXT, 'small', null, null, null, null);
+        $field = new xmldb_field('amazon_language', XMLDB_TYPE_CHAR, '60', null,  XMLDB_NOTNULL, null, 'en-US', 'incorrectfeedbackformat');
         if (!$dbman->field_exists($table, $field)) {
             $dbman->add_field($table, $field);
         }
 
-        $field = new xmldb_field('correctfeedbackformat', XMLDB_TYPE_INTEGER, '2', null, XMLDB_NOTNULL, null, '0');
-        if (!$dbman->field_exists($table, $field)) {
-            $dbman->add_field($table, $field);
-        }
-
-        $field = new xmldb_field('partiallycorrectfeedback', XMLDB_TYPE_TEXT, 'small', null, null, null, null);
-        if (!$dbman->field_exists($table, $field)) {
-            $dbman->add_field($table, $field);
-        }
-
-        $field = new xmldb_field('partiallycorrectfeedbackformat', XMLDB_TYPE_INTEGER, '2', null, XMLDB_NOTNULL, null, '0');
-        if (!$dbman->field_exists($table, $field)) {
-            $dbman->add_field($table, $field);
-        }
-
-        $field = new xmldb_field('incorrectfeedback', XMLDB_TYPE_TEXT, 'small', null, null, null, null);
-        if (!$dbman->field_exists($table, $field)) {
-            $dbman->add_field($table, $field);
-        }
-
-        $field = new xmldb_field('incorrectfeedbackformat', XMLDB_TYPE_INTEGER, '2', null, XMLDB_NOTNULL, null, '0');
-        if (!$dbman->field_exists($table, $field)) {
-            $dbman->add_field($table, $field);
-        }
-
-        upgrade_plugin_savepoint(true, 2019041800, 'qtype', 'sassessment');
-
-    }
-
-
-    if ($oldversion < 2019091800) {
-        $table = new xmldb_table('qtype_sassessment_options');
-
-        $field = new xmldb_field('speechtotextlang', XMLDB_TYPE_CHAR, '10', null,  XMLDB_NOTNULL, null, 'en', 'incorrectfeedbackformat');
-        if (!$dbman->field_exists($table, $field)) {
-            $dbman->add_field($table, $field);
-        }
-
-        upgrade_plugin_savepoint(true, 2019091800, 'qtype', 'sassessment');
+        upgrade_plugin_savepoint(true, 2020021200, 'qtype', 'sassessment');
     }
 
 

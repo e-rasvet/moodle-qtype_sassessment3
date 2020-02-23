@@ -40,12 +40,19 @@ class qtype_sassessment_edit_form extends question_edit_form {
     protected function definition_inner($mform) {
         $qtype = question_bank::get_qtype('sassessment');
 
-        $speechtotextlangoptions = array( "en" => "English", "de-DE" => "Deutsch (Deutschland)", "es-ES" => "Español (España)", "fr-FR" => "Français (France)", "it-IT" => "Italiano (Italia)", "ru-RU" => "Русский (Россия)", "ja-JP"=>"日本語（日本)");
+        $config = get_config('qtype_sassessment');
 
         $mform->addElement('checkbox', 'show_transcript', get_string('show_transcript', 'qtype_sassessment'));
         $mform->addElement('checkbox', 'save_stud_audio', get_string('save_stud_audio', 'qtype_sassessment'));
         $mform->addElement('checkbox', 'show_analysis', get_string('show_analysis', 'qtype_sassessment'));
-        $mform->addElement('select', 'speechtotextlang', get_string('speechtotextlang', 'qtype_sassessment'), $speechtotextlangoptions);
+
+        $amazon_language = array( "en-US" => "US English (en-US)", "en-AU" => "Australian English (en-AU)", "en-GB" => "British English (en-GB)",
+            "fr-CA" => "Canadian French (fr-CA)", "fr-FR" => "French (fr-FR)",
+            "es-US" => "US Spanish (es-US)");
+        $mform->addElement('select', 'amazon_language', get_string('amazon_language', 'qtype_sassessment'), $amazon_language);
+        $mform->setDefault('amazon_language', $config->amazon_language);
+
+
         //
         $mform->addElement('select', 'fb_tyfb_typepe',
                  get_string('fb_type', 'qtype_sassessment'), $qtype->feedback_types());
@@ -80,7 +87,7 @@ class qtype_sassessment_edit_form extends question_edit_form {
         $question->show_transcript = $question->options->show_transcript;
         $question->save_stud_audio = $question->options->save_stud_audio;
         $question->show_analysis = $question->options->show_analysis;
-        $question->speechtotextlang = $question->options->speechtotextlang;
+        $question->amazon_language = $question->options->amazon_language;
 
         $question->fb_type = $question->options->fb_type;
 
