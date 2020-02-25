@@ -3,15 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="9c0ebe09-95fe-493a-b09e-aeb33328e72e" name="Default" comment="Amazon Transcribe integration">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db/install.xml" beforeDir="false" afterPath="$PROJECT_DIR$/db/install.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db/upgrade.php" beforeDir="false" afterPath="$PROJECT_DIR$/db/upgrade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/edit_sassessment_form.php" beforeDir="false" afterPath="$PROJECT_DIR$/edit_sassessment_form.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/main.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lang/en/qtype_sassessment.php" beforeDir="false" afterPath="$PROJECT_DIR$/lang/en/qtype_sassessment.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib.php" beforeDir="false" afterPath="$PROJECT_DIR$/lib.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/questiontype.php" beforeDir="false" afterPath="$PROJECT_DIR$/questiontype.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/renderer.php" beforeDir="false" afterPath="$PROJECT_DIR$/renderer.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/settings.php" beforeDir="false" afterPath="$PROJECT_DIR$/settings.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -160,6 +152,7 @@
       <workItem from="1582618477759" duration="35000" />
       <workItem from="1582620465671" duration="42000" />
       <workItem from="1582621169587" duration="1217000" />
+      <workItem from="1582632616872" duration="2234000" />
     </task>
     <task id="LOCAL-00001" summary="Amazon Transcribe integration">
       <created>1581851831407</created>
@@ -237,9 +230,9 @@
       <screen x="0" y="23" width="1440" height="797" />
     </state>
     <state x="509" y="345" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.23.1440.797@0.23.1440.797" timestamp="1582617504792" />
-    <state x="386" y="57" width="667" height="729" key="find.popup" timestamp="1582622210483">
+    <state x="386" y="57" width="667" height="729" key="find.popup" timestamp="1582633410913">
       <screen x="0" y="23" width="1440" height="797" />
     </state>
-    <state x="386" y="57" width="667" height="729" key="find.popup/0.23.1440.797@0.23.1440.797" timestamp="1582622210483" />
+    <state x="386" y="57" width="667" height="729" key="find.popup/0.23.1440.797@0.23.1440.797" timestamp="1582633410913" />
   </component>
 </project>
