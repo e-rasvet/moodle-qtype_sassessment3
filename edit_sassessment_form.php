@@ -46,11 +46,11 @@ class qtype_sassessment_edit_form extends question_edit_form {
         $mform->addElement('checkbox', 'save_stud_audio', get_string('save_stud_audio', 'qtype_sassessment'));
         $mform->addElement('checkbox', 'show_analysis', get_string('show_analysis', 'qtype_sassessment'));
 
-        $amazon_language = array( "en-US" => "US English (en-US)", "en-AU" => "Australian English (en-AU)", "en-GB" => "British English (en-GB)",
+        $speechtotextlang = array( "en-US" => "US English (en-US)", "en-AU" => "Australian English (en-AU)", "en-GB" => "British English (en-GB)",
             "fr-CA" => "Canadian French (fr-CA)", "fr-FR" => "French (fr-FR)",
             "es-US" => "US Spanish (es-US)");
-        $mform->addElement('select', 'amazon_language', get_string('amazon_language', 'qtype_sassessment'), $amazon_language);
-        $mform->setDefault('amazon_language', $config->amazon_language);
+        $mform->addElement('select', 'speechtotextlang', get_string('speechtotextlang', 'qtype_sassessment'), $speechtotextlang);
+        $mform->setDefault('speechtotextlang', $config->speechtotextlang);
 
 
         //
@@ -87,7 +87,7 @@ class qtype_sassessment_edit_form extends question_edit_form {
         $question->show_transcript = $question->options->show_transcript;
         $question->save_stud_audio = $question->options->save_stud_audio;
         $question->show_analysis = $question->options->show_analysis;
-        $question->amazon_language = $question->options->amazon_language;
+        $question->speechtotextlang = $question->options->speechtotextlang;
 
         $question->fb_type = $question->options->fb_type;
 

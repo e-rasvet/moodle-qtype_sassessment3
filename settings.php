@@ -28,13 +28,13 @@ defined('MOODLE_INTERNAL') || die();
 
 if ($ADMIN->fulltree) {
 
-    $amazon_language = array( "en-US" => "US English (en-US)", "en-AU" => "Australian English (en-AU)", "en-GB" => "British English (en-GB)",
+    $speechtotextlang = array( "en-US" => "US English (en-US)", "en-AU" => "Australian English (en-AU)", "en-GB" => "British English (en-GB)",
         "fr-CA" => "Canadian French (fr-CA)", "fr-FR" => "French (fr-FR)",
         "es-US" => "US Spanish (es-US)");
 
-    $settings->add(new admin_setting_configselect('qtype_sassessment/amazon_language',
-        new lang_string('amazon_language', 'qtype_sassessment'),
-        '', 'en-US', $amazon_language));
+    $settings->add(new admin_setting_configselect('qtype_sassessment/speechtotextlang',
+        new lang_string('speechtotextlang', 'qtype_sassessment'),
+        '', 'en-US', $speechtotextlang));
 
 
     $amazon_region = array( "us-east-1" => "US East (N. Virginia)", "us-east-2" => "US East (Ohio)", "us-west-2" => "US West (Oregon)",

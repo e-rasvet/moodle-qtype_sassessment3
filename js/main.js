@@ -248,7 +248,7 @@ if (!window.navigator.mediaDevices.getUserMedia) {
             recStatus[id].ans = document.getElementById(btn.getAttribute('answername'));
             recStatus[id].ansDiv = document.getElementById(btn.getAttribute('answerDiv'));
             recStatus[id].grade = document.getElementById(btn.getAttribute('gradename'));
-            recStatus[id].amazon_language = btn.getAttribute('amazon_language');
+            recStatus[id].speechtotextlang = btn.getAttribute('speechtotextlang');
             recStatus[id].amazon_region = btn.getAttribute('amazon_region');
             recStatus[id].amazon_accessid = btn.getAttribute('amazon_accessid');
             recStatus[id].amazon_secretkey = btn.getAttribute('amazon_secretkey');
@@ -447,8 +447,8 @@ var streamAudioToWebSocket = function streamAudioToWebSocket(userMediaStream) {
 };
 
 function setLanguage() {
-    //console.log(recStatus[activeRecID].amazon_language + "/" + recStatus[activeRecID].amazon_region);
-  languageCode = recStatus[activeRecID].amazon_language;
+    //console.log(recStatus[activeRecID].speechtotextlang + "/" + recStatus[activeRecID].amazon_region);
+  languageCode = recStatus[activeRecID].speechtotextlang;
   //languageCode = $('#language').find(':selected').val();
   //if (languageCode == "en-US" || languageCode == "es-US") sampleRate = 48000;else sampleRate = 8000;
 }

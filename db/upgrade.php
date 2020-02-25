@@ -38,7 +38,7 @@ function xmldb_qtype_sassessment_upgrade($oldversion) {
     // Put any upgrade step following this.
 
 
-
+/*
     if ($oldversion < 2020021200) {
         $table = new xmldb_table('qtype_sassessment_options');
 
@@ -49,6 +49,7 @@ function xmldb_qtype_sassessment_upgrade($oldversion) {
 
         upgrade_plugin_savepoint(true, 2020021200, 'qtype', 'sassessment');
     }
+*/
 
 
     return true;

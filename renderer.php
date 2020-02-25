@@ -181,6 +181,10 @@ class qtype_sassessment_renderer extends qtype_renderer {
 
         $itemid = $qa->prepare_response_files_draft_itemid('attachments', $options->context->id);
         if (!$options->readonly) {
+            if ($question->speechtotextlang == "en") {
+                $question->speechtotextlang = "en-US";
+            }
+
             $gradename = $qa->get_qt_field_name('grade');
             $btnname = $qa->get_qt_field_name('rec');
             $audioname = $qa->get_qt_field_name('audio');
@@ -193,7 +197,7 @@ class qtype_sassessment_renderer extends qtype_renderer {
                 'answername' => $answername,
                 'answerDiv' => $answerDiv,
                 'gradename' => $gradename,
-                'amazon_language' => $question->amazon_language,
+                'speechtotextlang' => $question->speechtotextlang,
                 'amazon_region' => $config->amazon_region,
                 'amazon_accessid' => $config->amazon_accessid,
                 'amazon_secretkey' => $config->amazon_secretkey,
@@ -281,7 +285,7 @@ class qtype_sassessment_renderer extends qtype_renderer {
 require(["jquery"], function(min) {
     $(function() {
     
-        speechLang = "'.$question->amazon_language.'";
+        speechLang = "'.$question->speechtotextlang.'";
         console.log(\'Spell checking:\' + speechLang);
     
         $(".goToVideo").click(function() {
@@ -365,7 +369,7 @@ require(["jquery"], function(min) {
 
         $question = $qa->get_question();
         $ans = $qa->get_last_qt_var('answer');
-        $grade = qtype_sassessment_compare_answer($ans, $qa->get_question()->id, $question);
+        $grade = qtype_sassessment_compare_answer($ans, $qa->get_question()->id);
 
         $result = '';
         $result .= html_writer::start_tag('div', array('class' => 'ablock'));

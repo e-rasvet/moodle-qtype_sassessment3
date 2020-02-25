@@ -46,7 +46,7 @@ class qtype_sassessment extends question_type {
      * @return array
      */
     public function extra_question_fields() {
-        return array('qtype_sassessment_options', 'show_transcript', 'save_stud_audio', 'show_analysis', 'amazon_language');
+        return array('qtype_sassessment_options', 'show_transcript', 'save_stud_audio', 'show_analysis', 'speechtotextlang');
     }
 
     public function move_files($questionid, $oldcontextid, $newcontextid) {
@@ -89,7 +89,7 @@ class qtype_sassessment extends question_type {
           $options->show_transcript = (int)$formdata->show_transcript;
           $options->save_stud_audio = (int)$formdata->save_stud_audio;
           $options->show_analysis = (int)$formdata->show_analysis;
-          $options->amazon_language = $formdata->amazon_language;
+          $options->speechtotextlang = $formdata->speechtotextlang;
 
           $options->fb_type = $formdata->fb_type;
 
@@ -172,7 +172,7 @@ class qtype_sassessment extends question_type {
                 $question->itemsettings[$key]['partiallycorrectfeedbackformat'] = $format->getpath($setxml, array('#', 'partiallycorrectfeedbackformat', 0, '#'), 0);
                 $question->itemsettings[$key]['incorrectfeedback'] = $format->getpath($setxml, array('#', 'incorrectfeedback', 0, '#'), 0);
                 $question->itemsettings[$key]['incorrectfeedbackformat'] = $format->getpath($setxml, array('#', 'incorrectfeedbackformat', 0, '#'), 0);
-                $question->itemsettings[$key]['amazon_language'] = $format->getpath($setxml, array('#', 'amazon_language', 0, '#'), 0);
+                $question->itemsettings[$key]['speechtotextlang'] = $format->getpath($setxml, array('#', 'speechtotextlang', 0, '#'), 0);
                 $question->itemsettings[$key]['fb_type'] = $format->getpath($setxml, array('#', 'fb_type', 0, '#'), 0);
             }
         }
@@ -205,7 +205,7 @@ class qtype_sassessment extends question_type {
             $output .= '        <partiallycorrectfeedbackformat>' . $set->partiallycorrectfeedbackformat . "</partiallycorrectfeedbackformat>\n";
             $output .= '        <incorrectfeedback>' . $set->incorrectfeedback . "</incorrectfeedback>\n";
             $output .= '        <incorrectfeedbackformat>' . $set->incorrectfeedbackformat . "</incorrectfeedbackformat>\n";
-            $output .= '        <amazon_language>' . $set->amazon_language . "</amazon_language>\n";
+            $output .= '        <speechtotextlang>' . $set->speechtotextlang . "</speechtotextlang>\n";
             $output .= '        <fb_type>' . $set->fb_type . "</fb_type>\n";
             $output .= "     </sassessmentsetting>\n";
         }

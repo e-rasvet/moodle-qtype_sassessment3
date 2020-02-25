@@ -47,7 +47,13 @@ function qtype_sassessment_pluginfile($course, $cm, $context, $filearea, $args, 
     question_pluginfile($course, $context, 'qtype_sassessment', $filearea, $args, $forcedownload, $options);
 }
 
-function qtype_sassessment_compare_answer($ans, $qid, $question, $get = true) {
+/**
+ * @param $ans
+ * @param $qid
+ * @param bool $get
+ * @return array
+ */
+function qtype_sassessment_compare_answer($ans, $qid, $get = true) {
   global $DB, $CFG;
 
   $maxp = 0;
@@ -56,10 +62,12 @@ function qtype_sassessment_compare_answer($ans, $qid, $question, $get = true) {
   $allSampleResponses = "";
 
   if ($sampleresponses = $DB->get_records('question_answers', array('question' => $qid))) {
+      $questionOptions = $DB->get_records('qtype_sassessment_options', array('questionid' => $qid));
+
       foreach ($sampleresponses as $k => $sampleresponse) {
           $allSampleResponses .= $sampleresponse->answer;
 
-          $percent = qtype_sassessment_similar_text($sampleresponse->answer, $ans, $question->options->amazon_language);
+          $percent = qtype_sassessment_similar_text($sampleresponse->answer, $ans, $questionOptions->speechtotextlang);
 
           if ($maxp < $percent) {
               $maxi = $k;
