@@ -2,21 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9c0ebe09-95fe-493a-b09e-aeb33328e72e" name="Default" comment="Amazon Transcribe integration">
-      <change afterPath="$PROJECT_DIR$/settings.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db/install.xml" beforeDir="false" afterPath="$PROJECT_DIR$/db/install.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db/upgrade.php" beforeDir="false" afterPath="$PROJECT_DIR$/db/upgrade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/edit_sassessment_form.php" beforeDir="false" afterPath="$PROJECT_DIR$/edit_sassessment_form.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/main.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lang/.idea/lang.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lang/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lang/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lang/.idea/workspace.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lang/en/qtype_sassessment.php" beforeDir="false" afterPath="$PROJECT_DIR$/lang/en/qtype_sassessment.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib.php" beforeDir="false" afterPath="$PROJECT_DIR$/lib.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/questiontype.php" beforeDir="false" afterPath="$PROJECT_DIR$/questiontype.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/renderer.php" beforeDir="false" afterPath="$PROJECT_DIR$/renderer.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/version.php" beforeDir="false" afterPath="$PROJECT_DIR$/version.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -159,6 +145,7 @@
       <workItem from="1582006793846" duration="8518000" />
       <workItem from="1582089184540" duration="337000" />
       <workItem from="1582441397220" duration="36000" />
+      <workItem from="1582543544630" duration="476000" />
     </task>
     <task id="LOCAL-00001" summary="Amazon Transcribe integration">
       <created>1581851831407</created>
