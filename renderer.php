@@ -364,7 +364,8 @@ require(["jquery"], function(min) {
     }
 
     public function specific_feedback(question_attempt $qa) {
-
+        global $DB, $USER;
+        
         include_once "finediff.php";
 
         $question = $qa->get_question();
@@ -400,6 +401,10 @@ require(["jquery"], function(min) {
         }
 
         if (!empty($feedback)) {
+            if (!is_numeric($grade['gradePercent'])) {
+                $feedback = get_string('teachergraded', 'qtype_sassessment');
+            }
+
             $result .= html_writer::tag('p', /*get_string('feedback', 'qtype_sassessment') . ": " .*/ $feedback);
         }
 
@@ -417,6 +422,12 @@ require(["jquery"], function(min) {
          * No need to show target response
          */
         //$result .= html_writer::tag('p', get_string('targetresponsee', 'qtype_sassessment') . ": " . $grade['answer']);
+
+        /*
+         * Check user teacher role
+         */
+        $roleid = $DB->get_field('role', 'id', ['shortname' => 'editingteacher']);
+        $isteacheranywhere = $DB->record_exists('role_assignments', ['userid' => $USER->id, 'roleid' => $roleid]);
 
         if ($question->show_transcript == 1) {
             $result .= html_writer::tag('p', get_string('myanswer', 'qtype_sassessment') . ": " . $ans);
