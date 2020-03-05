@@ -372,16 +372,19 @@ if (!window.navigator.mediaDevices.getUserMedia) {
 
 
             recStatus[activeRecID].grade.value = 'Updating...';
-            $.post(typeRoot + "/ajax-score.php", {qid: recStatus[activeRecID].qid, ans: recStatus[activeRecID].ans.value},
+            $.post(typeRoot + "/ajax-score.php", {qid: recStatus[activeRecID].qid, ans: $(recStatus[activeRecID].ansDiv).text()},
                 function (data) {
                     recStatus[activeRecID].grade.value = JSON.parse(data).gradePercent;
+
+                    console.log("Transcription: " + transcription);
+                    console.log("Grade: " + recStatus[activeRecID].grade.value);
+                    console.log("AnswerField: " + recStatus[activeRecID].ans.value);
+                    console.log("TextDiv: " + $(recStatus[activeRecID].ansDiv).text());
 
                     recStatus[activeRecID] = null;
                 });
 
 
-
-            console.log(transcription);
         }
 
     });

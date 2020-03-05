@@ -27,7 +27,7 @@
 defined('MOODLE_INTERNAL') || die();
 
 $plugin->component = 'qtype_sassessment';
-$plugin->version   = 2020021200;
+$plugin->version   = 2020021300;
 
 $plugin->requires  = 2017111300; // Moodle 3.4
 

@@ -66,7 +66,7 @@ function qtype_sassessment_compare_answer($ans, $qid, $get = true) {
       $questionOptions = $DB->get_records('qtype_sassessment_options', array('questionid' => $qid));
 
       foreach ($sampleresponses as $k => $sampleresponse) {
-          $allSampleResponses .= $sampleresponse->answer;
+          $allSampleResponses .= $sampleresponse->answer."\n";
 
           $percent = qtype_sassessment_similar_text($sampleresponse->answer, $ans, $questionOptions->speechtotextlang);
           $percentOrig = qtype_sassessment_similar_text_original($sampleresponse->answer, $ans, $questionOptions->speechtotextlang);
@@ -88,6 +88,10 @@ function qtype_sassessment_compare_answer($ans, $qid, $get = true) {
       }
   }
 
+  if ($maxpF > 90) {
+      $maxpF = 100;
+  }
+
   $result = array(
     "gradePercent" => round($maxpF),
     "grade" => round($maxpF/100, 2),
@@ -100,6 +104,10 @@ function qtype_sassessment_compare_answer($ans, $qid, $get = true) {
       $result["gradePercent"] = 100;
       $result["grade"] = 1;
   }
+
+  $result["answer"] = $ans;
+  $result["sampleAnswers"] = $allSampleResponses;
+  $result["i"] = $maxi;
 
   return $result;
 }

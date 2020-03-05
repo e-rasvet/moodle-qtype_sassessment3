@@ -2,8 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9c0ebe09-95fe-493a-b09e-aeb33328e72e" name="Default" comment="Amazon Transcribe integration">
-      <change afterPath="$PROJECT_DIR$/backup/moodle2/backup_qtype_sassessment_plugin.class.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backup/moodle2/restore_qtype_sassessment_plugin.class.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/deployment.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/deployment.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/webServers.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/webServers.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db/upgrade.php" beforeDir="false" afterPath="$PROJECT_DIR$/db/upgrade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/main.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib.php" beforeDir="false" afterPath="$PROJECT_DIR$/lib.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/renderer.php" beforeDir="false" afterPath="$PROJECT_DIR$/renderer.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/version.php" beforeDir="false" afterPath="$PROJECT_DIR$/version.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -158,6 +164,10 @@
       <workItem from="1582728163472" duration="43000" />
       <workItem from="1582779497323" duration="121000" />
       <workItem from="1582985549168" duration="70000" />
+      <workItem from="1583243433207" duration="610000" />
+      <workItem from="1583306611312" duration="1790000" />
+      <workItem from="1583324282782" duration="2294000" />
+      <workItem from="1583335574428" duration="2678000" />
     </task>
     <task id="LOCAL-00001" summary="Amazon Transcribe integration">
       <created>1581851831407</created>
@@ -197,10 +207,10 @@
     <option name="LAST_COMMIT_MESSAGE" value="Amazon Transcribe integration" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="320" y="87" key="#Deployment" timestamp="1581703163347">
-      <screen x="0" y="23" width="1440" height="798" />
+    <state x="320" y="87" key="#Deployment" timestamp="1583325402892">
+      <screen x="0" y="23" width="1440" height="797" />
     </state>
-    <state x="320" y="87" key="#Deployment/0.23.1440.797@0.23.1440.797" timestamp="1581695066899" />
+    <state x="320" y="87" key="#Deployment/0.23.1440.797@0.23.1440.797" timestamp="1583325402892" />
     <state x="320" y="87" key="#Deployment/0.23.1440.798@0.23.1440.798" timestamp="1581703163347" />
     <state x="184" y="83" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1581851923041">
       <screen x="0" y="23" width="1440" height="797" />
@@ -239,5 +249,13 @@
       <screen x="0" y="23" width="1440" height="797" />
     </state>
     <state x="386" y="57" width="667" height="729" key="find.popup/0.23.1440.797@0.23.1440.797" timestamp="1582633410913" />
+    <state x="437" y="244" width="583" height="525" key="ftp.server.browser" timestamp="1583307593253">
+      <screen x="0" y="23" width="1440" height="797" />
+    </state>
+    <state x="437" y="244" width="583" height="525" key="ftp.server.browser/0.23.1440.797@0.23.1440.797" timestamp="1583307593253" />
+    <state x="590" y="304" key="publish.login" timestamp="1583324784484">
+      <screen x="0" y="23" width="1440" height="797" />
+    </state>
+    <state x="590" y="304" key="publish.login/0.23.1440.797@0.23.1440.797" timestamp="1583324784484" />
   </component>
 </project>
