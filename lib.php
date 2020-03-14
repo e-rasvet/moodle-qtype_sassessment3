@@ -501,3 +501,62 @@ function qtype_sassessment_count_syllables($word) {
     }
     return $syllables;
 }
+
+
+function qtype_sassessment_embed_media($url, $mediaId){
+
+    $filename = basename(parse_url($url, PHP_URL_PATH));
+    $mime = getMimeType($filename);
+
+    if(strstr($mime, "video/")){
+        // this code for video
+
+        //https://docs.moodle.org/dev/skins/moodledocs/sitebar/pix/logo.png
+        //http://techslides.com/demos/sample-videos/small.mp4
+        //https://dl.espressif.com/dl/audio/gs-16b-2c-44100hz.mp3
+
+        $embed = html_writer::start_tag('video', array("id" => $mediaId, "controls" => ""));
+        $embed .= html_writer::empty_tag('source', array('src' => $url, 'type' => $mime));
+        $embed .= html_writer::tag('p', "Your browser doesn't support HTML5 video.");
+        $embed .= html_writer::end_tag('video');
+    } else if(strstr($mime, "image/")){
+        $embed = html_writer::empty_tag('img', array('src' => $url));
+    } else if(strstr($mime, "audio/")){
+        $embed = html_writer::start_tag('audio', array("id" => $mediaId, "controls" => ""));
+        $embed .= html_writer::empty_tag('source', array('src' => $url, 'type' => $mime));
+        $embed .= html_writer::tag('p', "Your browser doesn't support HTML5 audio.");
+        $embed .= html_writer::end_tag('audio');
+
+    } else {
+        // this code for text
+        $embed = $url;
+    }
+
+    return $embed;
+}
+
+
+function getMimeType($ext){
+    $ext = strtolower($ext);
+    $path_parts = pathinfo($ext);
+    $ext = '.' . $path_parts['extension'] ;
+
+    switch ($ext) {
+        case '.aac': $mime ='audio/aac'; break; // AAC audio
+        case '.mp3': $mime ='audio/mp3'; break; // mp3 audio
+        case '.wav': $mime ='audio/wav'; break; // Waveform Audio Format
+        case '.weba': $mime ='audio/webm'; break; // WEBM audio
+        case '.mpeg': $mime ='video/mpeg'; break; // MPEG Video
+        case '.webm': $mime ='video/webm'; break; // WEBM video
+        case '.mp4': $mime ='video/mp4'; break; // mp4 video
+        case '.avi': $mime ='video/avi'; break; // avi video
+        case '.webp': $mime ='image/webp'; break; // WEBP image
+        case '.jpeg': $mime ='image/jpeg'; break; // JPEG images
+        case '.jpg': $mime ='image/jpeg'; break; // JPEG images
+        case '.png': $mime ='image/png'; break; // Portable Network Graphics
+        default: $mime = 'application/octet-stream' ; // general purpose MIME-type
+    }
+    return $mime ;
+
+}
+

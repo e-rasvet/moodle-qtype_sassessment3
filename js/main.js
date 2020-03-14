@@ -248,6 +248,9 @@ if (!window.navigator.mediaDevices.getUserMedia) {
             recStatus[id].ans = document.getElementById(btn.getAttribute('answername'));
             recStatus[id].ansDiv = document.getElementById(btn.getAttribute('answerDiv'));
             recStatus[id].grade = document.getElementById(btn.getAttribute('gradename'));
+            recStatus[id].medianame = document.getElementById(btn.getAttribute('medianame'));
+            recStatus[id].mediaelement = document.getElementById(btn.getAttribute('mediaelement'));
+            recStatus[id].mediapercent = btn.getAttribute('mediapercent');
             recStatus[id].speechtotextlang = btn.getAttribute('speechtotextlang');
             recStatus[id].amazon_region = btn.getAttribute('amazon_region');
             recStatus[id].amazon_accessid = btn.getAttribute('amazon_accessid');
@@ -376,10 +379,17 @@ if (!window.navigator.mediaDevices.getUserMedia) {
                 function (data) {
                     recStatus[activeRecID].grade.value = JSON.parse(data).gradePercent;
 
-                    console.log("Transcription: " + transcription);
-                    console.log("Grade: " + recStatus[activeRecID].grade.value);
-                    console.log("AnswerField: " + recStatus[activeRecID].ans.value);
-                    console.log("TextDiv: " + $(recStatus[activeRecID].ansDiv).text());
+                    if (parseInt(recStatus[activeRecID].grade.value) >= parseInt(recStatus[activeRecID].mediapercent)){
+                        recStatus[activeRecID].medianame.style.display = "block";
+                        recStatus[activeRecID].mediaelement.play();
+                    } else {
+                        console.log("No feedback: " + recStatus[activeRecID].grade.value + " / " + recStatus[activeRecID].mediapercent);
+                    }
+
+                    //console.log("Transcription: " + transcription);
+                    //console.log("Grade: " + recStatus[activeRecID].grade.value);
+                    //console.log("AnswerField: " + recStatus[activeRecID].ans.value);
+                    //console.log("TextDiv: " + $(recStatus[activeRecID].ansDiv).text());
 
                     recStatus[activeRecID] = null;
                 });

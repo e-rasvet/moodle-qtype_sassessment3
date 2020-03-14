@@ -38,21 +38,6 @@ function xmldb_qtype_sassessment_upgrade($oldversion) {
     // Put any upgrade step following this.
 
 
-/*
-    if ($oldversion < 2020021200) {
-        $table = new xmldb_table('qtype_sassessment_options');
-
-        $field = new xmldb_field('amazon_language', XMLDB_TYPE_CHAR, '60', null,  XMLDB_NOTNULL, null, 'en-US', 'incorrectfeedbackformat');
-        if (!$dbman->field_exists($table, $field)) {
-            $dbman->add_field($table, $field);
-        }
-
-        upgrade_plugin_savepoint(true, 2020021200, 'qtype', 'sassessment');
-    }
-*/
-
-
-
     if ($oldversion < 2019041800) {
         $table = new xmldb_table('qtype_sassessment_options');
 
@@ -100,6 +85,27 @@ function xmldb_qtype_sassessment_upgrade($oldversion) {
         }
 
         upgrade_plugin_savepoint(true, 2019091800, 'qtype', 'sassessment');
+    }
+
+
+    /*
+     * Intermediate feedback fields
+     */
+
+    if ($oldversion < 2020021400) {
+        $table = new xmldb_table('qtype_sassessment_options');
+
+        $field = new xmldb_field('immediatefeedback', XMLDB_TYPE_TEXT, 'small', null, null, null, null);
+        if (!$dbman->field_exists($table, $field)) {
+            $dbman->add_field($table, $field);
+        }
+
+        $field = new xmldb_field('immediatefeedbackpercent', XMLDB_TYPE_INTEGER, '3', null, XMLDB_NOTNULL, null, '0');
+        if (!$dbman->field_exists($table, $field)) {
+            $dbman->add_field($table, $field);
+        }
+
+        upgrade_plugin_savepoint(true, 2020021400, 'qtype', 'sassessment');
     }
 
 

@@ -46,6 +46,7 @@ class qtype_sassessment_edit_form extends question_edit_form {
         $mform->addElement('checkbox', 'save_stud_audio', get_string('save_stud_audio', 'qtype_sassessment'));
         $mform->addElement('checkbox', 'show_analysis', get_string('show_analysis', 'qtype_sassessment'));
 
+
         $speechtotextlang = array( "en-US" => "US English (en-US)", "en-AU" => "Australian English (en-AU)", "en-GB" => "British English (en-GB)",
             "fr-CA" => "Canadian French (fr-CA)", "fr-FR" => "French (fr-FR)",
             "es-US" => "US Spanish (es-US)");
@@ -62,6 +63,19 @@ class qtype_sassessment_edit_form extends question_edit_form {
         $this->add_per_answer_fields($mform, '{no}', question_bank::fraction_options_full(), 1, 3);
 
         $this->add_combined_feedback_fields(false);
+
+        /*
+         * Intermediate feedback
+         */
+        $mform->addElement('textarea', 'immediatefeedback', get_string('immediatefeedback', 'qtype_sassessment'),
+            array('rows' => 3, 'cols' => 65), $this->editoroptions);  // or editor
+        $mform->setType('immediatefeedback', PARAM_RAW);
+        // Using setValue() as setDefault() does not work for the editor class.
+        //$element->setValue(array('text' => ''));
+
+        $immediatefeedbackpercent = array_replace(array(0 => "No"), array_combine(range(70, 100, 5), range(70, 100, 5)) );
+        $mform->addElement('select', 'immediatefeedbackpercent', '', $immediatefeedbackpercent);
+
         // $mform->disabledIf('shownumcorrect', 'single', 'eq', 1);
 
         //$this->add_interactive_settings(true, true);
@@ -78,6 +92,7 @@ class qtype_sassessment_edit_form extends question_edit_form {
     }
 
     protected function data_preprocessing($question) {
+
         $question = parent::data_preprocessing($question);
 
         if (empty($question->options)) {
@@ -88,6 +103,9 @@ class qtype_sassessment_edit_form extends question_edit_form {
         $question->save_stud_audio = $question->options->save_stud_audio;
         $question->show_analysis = $question->options->show_analysis;
         $question->speechtotextlang = $question->options->speechtotextlang;
+        $question->immediatefeedback = $question->options->immediatefeedback;
+        $question->immediatefeedbackpercent = $question->options->immediatefeedbackpercent;
+
 
         $question->fb_type = $question->options->fb_type;
 

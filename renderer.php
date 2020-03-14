@@ -180,6 +180,7 @@ class qtype_sassessment_renderer extends qtype_renderer {
         $config = get_config('qtype_sassessment');
 
         $itemid = $qa->prepare_response_files_draft_itemid('attachments', $options->context->id);
+
         if (!$options->readonly) {
             if ($question->speechtotextlang == "en") {
                 $question->speechtotextlang = "en-US";
@@ -188,6 +189,9 @@ class qtype_sassessment_renderer extends qtype_renderer {
             $gradename = $qa->get_qt_field_name('grade');
             $btnname = $qa->get_qt_field_name('rec');
             $audioname = $qa->get_qt_field_name('audio');
+            $medianame = $qa->get_qt_field_name('mediaembed');
+            $mediaelement = $qa->get_qt_field_name('mediaelement');
+
             $btnattributes = array(
                 'name' => $btnname,
                 'id' => $btnname,
@@ -197,6 +201,9 @@ class qtype_sassessment_renderer extends qtype_renderer {
                 'answername' => $answername,
                 'answerDiv' => $answerDiv,
                 'gradename' => $gradename,
+                'medianame' => $medianame,
+                'mediaelement' => $mediaelement,
+                'mediapercent' => $question->immediatefeedbackpercent,
                 'speechtotextlang' => $question->speechtotextlang,
                 'amazon_region' => $config->amazon_region,
                 'amazon_accessid' => $config->amazon_accessid,
@@ -226,6 +233,10 @@ class qtype_sassessment_renderer extends qtype_renderer {
             $result .= html_writer::empty_tag('audio', array('id' => $audioname, 'name' => $audioname, 'controls' => ''));
             $result .= html_writer::end_tag('div');
 
+            $result .= html_writer::start_tag('div', array('class' => 'ablock', 'id' => $medianame, 'style' => 'display: none'));
+            $result .= qtype_sassessment_embed_media($question->immediatefeedback, $mediaelement);
+            $result .= html_writer::end_tag('div');
+
             $result .= html_writer::script(null, "https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js");
             $result .= html_writer::script(null, new moodle_url('/question/type/sassessment/js/lame.js?32'));
             $result .= html_writer::script(null, new moodle_url('/question/type/sassessment/js/main.js?32'));
@@ -241,9 +252,6 @@ class qtype_sassessment_renderer extends qtype_renderer {
 
             foreach ($files as $file) {
                 $result .= html_writer::start_tag('div', array('class' => 'ablock', 'style' => $audioDisplayStatus));
-                // $result .= html_writer::tag('p', html_writer::link($qa->get_response_file_url($file),
-                //         $this->output->pix_icon(file_file_icon($file), get_mimetype_description($file),
-                //         'moodle', array('class' => 'icon')) . ' ' . s($file->get_filename())));
                 $result .= html_writer::tag('p', html_writer::empty_tag('audio', array('src' => $qa->get_response_file_url($file), 'controls' => '')));
                 $result .= html_writer::end_tag('div');
             }
@@ -268,9 +276,6 @@ class qtype_sassessment_renderer extends qtype_renderer {
             if (!$options->readonly && !empty($q->answer)) {
                 $result .= html_writer::start_tag('div', array('class' => 'ablock form-inline'));
 
-                //echo "<pre>";
-                //print_r (qtype_sassessment_cmp_phon("", "how are you how are you"));
-
                 $result .= html_writer::tag('label', get_string('score', 'qtype_sassessment',
                     html_writer::tag('span', $input, array('class' => 'answer'))),
                     array('for' => $inputattributes['id'], 'style'=>$gradeDisplayStatus));
@@ -284,7 +289,7 @@ class qtype_sassessment_renderer extends qtype_renderer {
         
 require(["jquery"], function(min) {
     $(function() {
-    
+        
         speechLang = "'.$question->speechtotextlang.'";
         console.log(\'Spell checking:\' + speechLang);
     
@@ -310,42 +315,12 @@ require(["jquery"], function(min) {
                 
                 $(".qaclass"+time+"id").attr("style","background-color: antiquewhite; color: black;");
                 
-                //$(".goToVideo").each(function() {
-                //    console.log("DV: " + $(this).attr("data-value"));
-                //    if ($(this).attr("data-value") > this.currentTime) {
-                //        console.log($(this).attr("data-value"));
-
-                //    }
-                //});
                 window.latestID = time
                 }
-            });
-            
-            /*
-            var btn = document.querySelector(\'button[id^="'.$btnname.'"]\');
-            var timerCount = 0;
-            var btnRecordInt = setInterval(function () {
-                timerCount = timerCount + 1;
-                if (timerCount < 6) {
-                    btn.innerHTML = "Start recording " + (5 - timerCount);
-                }
-                if (timerCount == 6) {
-                    btn.innerHTML = "Start recording";
-                    var bntEv = new Object();
-                    bntEv.target = btn;
-                    recBtn(bntEv);
-                }
-                
-                if (timerCount == 16) {
-                    var bntEv = new Object();
-                    bntEv.target = btn;
-                    recBtn(bntEv);
-                }
-            },1000);
-            */
-            
+            });    
     });
 });
+
 ');
 
 

@@ -47,6 +47,8 @@ class qtype_sassessment_question extends question_graded_automatically {
     public $partiallycorrectfeedbackformat;
     public $incorrectfeedback;
     public $incorrectfeedbackformat;
+    public $immediatefeedback;
+    public $immediatefeedbackpercent;
 
     public function get_expected_data() {
         return array(
@@ -88,7 +90,8 @@ class qtype_sassessment_question extends question_graded_automatically {
             $args, $forcedownload) {
         // TODO.
         if ($component == 'question' && in_array($filearea,
-                array('correctfeedback', 'partiallycorrectfeedback', 'incorrectfeedback'))) {
+                array('correctfeedback', 'partiallycorrectfeedback', 'incorrectfeedback',
+                    'immediatefeedback', 'immediatefeedbackpercent'))) {
             return $this->check_combined_feedback_file_access($qa, $options, $filearea, $args);
         } else if ($component == 'question' && $filearea == 'response_attachments') {
           return true;

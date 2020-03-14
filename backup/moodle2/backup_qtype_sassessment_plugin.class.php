@@ -49,7 +49,7 @@ class backup_qtype_sassessment_plugin extends backup_qtype_plugin {
         // Now create the qtype own structures.
         $sassessment = new backup_nested_element('sassessment', array('id'), array(
             'show_transcript', 'save_stud_audio', 'show_analysis', 'correctfeedback', 'correctfeedbackformat', 'partiallycorrectfeedback',
-            'partiallycorrectfeedbackformat', 'incorrectfeedback', 'incorrectfeedbackformat', 'speechtotextlang', 'fb_type'));
+            'partiallycorrectfeedbackformat', 'incorrectfeedback', 'incorrectfeedbackformat', 'immediatefeedback', 'immediatefeedbackpercent', 'speechtotextlang', 'fb_type'));
 
         // Now the own qtype tree.
         $pluginwrapper->add_child($sassessment);

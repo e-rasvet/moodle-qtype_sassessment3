@@ -46,7 +46,8 @@ class qtype_sassessment extends question_type {
      * @return array
      */
     public function extra_question_fields() {
-        return array('qtype_sassessment_options', 'show_transcript', 'save_stud_audio', 'show_analysis', 'speechtotextlang');
+        return array('qtype_sassessment_options', 'show_transcript', 'save_stud_audio', 'show_analysis', 'speechtotextlang',
+            'immediatefeedback', 'immediatefeedbackpercent');
     }
 
     public function move_files($questionid, $oldcontextid, $newcontextid) {
@@ -70,6 +71,7 @@ class qtype_sassessment extends question_type {
 
     public function save_question_options($formdata) {
         global $DB;
+
         $context = $formdata->context;
         $result = new stdClass();
 
@@ -83,6 +85,8 @@ class qtype_sassessment extends question_type {
               $options->correctfeedback = '';
               $options->partiallycorrectfeedback = '';
               $options->incorrectfeedback = '';
+              $options->immediatefeedback = '';
+              $options->immediatefeedbackpercent = '';
               $options->id = $DB->insert_record('qtype_sassessment_options', $options);
           }
 
@@ -90,12 +94,15 @@ class qtype_sassessment extends question_type {
           $options->save_stud_audio = (int)$formdata->save_stud_audio;
           $options->show_analysis = (int)$formdata->show_analysis;
           $options->speechtotextlang = $formdata->speechtotextlang;
+          $options->immediatefeedback = $formdata->immediatefeedback;
+          $options->immediatefeedbackpercent = (int)$formdata->immediatefeedbackpercent;
 
           $options->fb_type = $formdata->fb_type;
 
           $options = $this->save_combined_feedback_helper($options, $formdata, $context, true);
 
           $DB->update_record('qtype_sassessment_options', $options);
+
         }
     }
 
@@ -172,6 +179,8 @@ class qtype_sassessment extends question_type {
                 $question->itemsettings[$key]['partiallycorrectfeedbackformat'] = $format->getpath($setxml, array('#', 'partiallycorrectfeedbackformat', 0, '#'), 0);
                 $question->itemsettings[$key]['incorrectfeedback'] = $format->getpath($setxml, array('#', 'incorrectfeedback', 0, '#'), 0);
                 $question->itemsettings[$key]['incorrectfeedbackformat'] = $format->getpath($setxml, array('#', 'incorrectfeedbackformat', 0, '#'), 0);
+                $question->itemsettings[$key]['immediatefeedback'] = $format->getpath($setxml, array('#', 'immediatefeedback', 0, '#'), 0);
+                $question->itemsettings[$key]['immediatefeedbackpercent'] = $format->getpath($setxml, array('#', 'immediatefeedbackpercent', 0, '#'), 0);
                 $question->itemsettings[$key]['speechtotextlang'] = $format->getpath($setxml, array('#', 'speechtotextlang', 0, '#'), 0);
                 $question->itemsettings[$key]['fb_type'] = $format->getpath($setxml, array('#', 'fb_type', 0, '#'), 0);
             }
@@ -205,6 +214,8 @@ class qtype_sassessment extends question_type {
             $output .= '        <partiallycorrectfeedbackformat>' . $set->partiallycorrectfeedbackformat . "</partiallycorrectfeedbackformat>\n";
             $output .= '        <incorrectfeedback>' . $set->incorrectfeedback . "</incorrectfeedback>\n";
             $output .= '        <incorrectfeedbackformat>' . $set->incorrectfeedbackformat . "</incorrectfeedbackformat>\n";
+            $output .= '        <immediatefeedback>' . $set->immediatefeedback . "</immediatefeedback>\n";
+            $output .= '        <immediatefeedbackpercent>' . $set->immediatefeedbackpercent . "</immediatefeedbackpercent>\n";
             $output .= '        <speechtotextlang>' . $set->speechtotextlang . "</speechtotextlang>\n";
             $output .= '        <fb_type>' . $set->fb_type . "</fb_type>\n";
             $output .= "     </sassessmentsetting>\n";
