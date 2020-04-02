@@ -86,6 +86,19 @@ class qtype_sassessment_question extends question_graded_automatically {
     }
 
 
+    /*
+     * No need to grade questions without answers. Questions without answers be manual graded items.
+     */
+    public function make_behaviour(question_attempt $qa, $preferredbehaviour) {
+        $question = $qa->get_question();
+        if (empty(count($question->questions))) {
+            return question_engine::make_behaviour('manualgraded', $qa, $preferredbehaviour);
+        } else {
+            return question_engine::make_archetypal_behaviour($preferredbehaviour, $qa);
+        }
+    }
+
+
     public function check_file_access($qa, $options, $component, $filearea,
             $args, $forcedownload) {
         // TODO.

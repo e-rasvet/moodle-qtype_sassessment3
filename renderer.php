@@ -139,20 +139,20 @@ class qtype_sassessment_renderer extends qtype_renderer {
 
             $answerDiv = $qa->get_qt_field_name('answerDiv');
 
+            /*
+             * Check user teacher role
+             */
+            $roleid = $DB->get_field('role', 'id', ['shortname' => 'editingteacher']);
+            $isteacheranywhere = $DB->record_exists('role_assignments', ['userid' => $USER->id, 'roleid' => $roleid]);
+
             $input = html_writer::div($currentanswer, $answerDiv, array("id" => $answerDiv));
             $input .= html_writer::empty_tag('input', $inputattributes);
 
 
-            if ($question->show_transcript == 1) {
+            if ($question->show_transcript == 1 || $isteacheranywhere === true) {
                 $answerDisplayStatus = "none";
             } else {
                 $answerDisplayStatus = "display:none";
-            }
-
-            if ($question->show_analysis == 1) {
-                $gradeDisplayStatus = "none";
-            } else {
-                $gradeDisplayStatus = "display:none";
             }
 
             if ($question->save_stud_audio == 1) {
@@ -257,6 +257,7 @@ class qtype_sassessment_renderer extends qtype_renderer {
             }
         }
 
+
         $gradename = $qa->get_qt_field_name('grade');
         {
             $label = 'grade';
@@ -271,15 +272,17 @@ class qtype_sassessment_renderer extends qtype_renderer {
                 'style' => 'border: 0px; background-color: transparent;',
             );
 
-            $input = html_writer::empty_tag('input', $inputattributes);
+            if (count($question->questions) > 0) {  // Show grade if sample answers exist only
+                $input = html_writer::empty_tag('input', $inputattributes);
 
-            if (!$options->readonly && !empty($q->answer)) {
-                $result .= html_writer::start_tag('div', array('class' => 'ablock form-inline'));
+                if (!$options->readonly && !empty($q->answer)) {
+                    $result .= html_writer::start_tag('div', array('class' => 'ablock form-inline'));
 
-                $result .= html_writer::tag('label', get_string('score', 'qtype_sassessment',
-                    html_writer::tag('span', $input, array('class' => 'answer'))),
-                    array('for' => $inputattributes['id'], 'style'=>$gradeDisplayStatus));
-                $result .= html_writer::end_tag('div');
+                    $result .= html_writer::tag('label', get_string('score', 'qtype_sassessment',
+                        html_writer::tag('span', $input, array('class' => 'answer'))),
+                        array('for' => $inputattributes['id']));
+                    $result .= html_writer::end_tag('div');
+                }
             }
         }
 
@@ -340,7 +343,7 @@ require(["jquery"], function(min) {
 
     public function specific_feedback(question_attempt $qa) {
         global $DB, $USER;
-        
+
         include_once "finediff.php";
 
         $question = $qa->get_question();
@@ -404,7 +407,10 @@ require(["jquery"], function(min) {
         $roleid = $DB->get_field('role', 'id', ['shortname' => 'editingteacher']);
         $isteacheranywhere = $DB->record_exists('role_assignments', ['userid' => $USER->id, 'roleid' => $roleid]);
 
-        if ($question->show_transcript == 1) {
+        /*
+         * Teacher always see transcription
+         */
+        if ($question->show_transcript == 1 || $isteacheranywhere === true) {
             $result .= html_writer::tag('p', get_string('myanswer', 'qtype_sassessment') . ": " . $ans);
 
             //$result .= html_writer::tag('style', "del{display:none}ins{color:red;background:#fdd;text-decoration:none}");
